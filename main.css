@@ -191,8 +191,10 @@ body {
           color: #0966c2;
           display: inline-block;
           font-weight: bold;
+          padding-left: 10px;
+          padding-right: 10px;
+          position: relative;
           text-decoration: none;
-          text-indent: 20px;
           }
           .project-link::after {
             content: '';
@@ -202,10 +204,10 @@ body {
             border-left-width: 10px;
             border-right: 10px solid transparent;
             border-top: 10px solid transparent;
-            bottom: -15px;
+            bottom: -10px;
             display: inline-block;
-            position: relative;
-            right: -10px;
+            position: absolute;
+            right: -14px;
             transition: all 0.3s ease;
             }
             .project-link:hover:after {
