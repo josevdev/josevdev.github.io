@@ -1,0 +1,646 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>House Supplies</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="styles/###.css">
+<link rel="stylesheet" href="styles/main.css">
+<style>
+
+html {
+  font-family: Arial, sans-serif;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+table {
+  margin: 0 0 0 0;
+  outline: 1px solid black;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+
+thead {
+  height: 20px;
+}
+
+th {
+  background-color: lightgray;
+  font-size: 16px;
+  margin: 0 0 0 0;
+  outline: 1px solid black;
+  padding: 0 0 0 0;
+  width: 20%;
+}
+
+th:first-child {
+  padding-left: 10px;
+  text-align: left;
+  width: 40%;
+}
+
+td {
+  height: 50px;
+  margin: 0 0 0 0;
+  outline: 1px solid black;
+  padding: 0 0 0 0;
+  text-align: center;
+}
+
+tr td:first-child {
+  padding-left: 10px;
+  text-align: left;
+}
+
+tr td:nth-child(3) {
+  background-color: white;
+}
+
+tr td:last-child {
+  color: white;
+  font-weight: bold;
+}
+
+td.buyNo {
+  background-color: red;
+}
+
+td.buyYes {
+  background-color: lightblue;
+}
+
+select {
+  height: 80%;
+  margin: 0 auto;
+  padding: 0 0 0 0;
+  width: 70%;
+}
+
+#btn-buy-list {
+  background-color: green;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  display: block;
+  font-weight: bold;
+  height: 50px;
+  font-style: italic;
+  margin: 10px auto;
+  padding: 0 0 0 0;
+  text-transform: uppercase;
+  width: 90%;
+}
+
+</style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Freezer Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>ground meat</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>frozen vegetables</td>
+<td>3</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>weenies</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>waffles</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>french toast</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>diced potatoes</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Refrigerator Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>milk (2 percent gallon)</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>milk (almond)</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>eggs</td>
+<td>18</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>cheese (shredded)</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>butter</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>orange juice</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>spinach (plastic container)</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>avocados</td>
+<td>6</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>grapes</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>berries</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>deli meat</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>mayo</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>mustard</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>ketchup</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>ranch</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Pantry Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>chips</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>tostadas</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>bread (wheat)</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>peanut butter</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>hot sauce</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>syrup</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>oats</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>cereal</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>walnuts</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>cranberries</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>sopas</td>
+<td>3</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>mac & cheese</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>beans</td>
+<td>6</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>tomato sauce</td>
+<td>6</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>foil paper</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Restroom Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Bedroom Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>pencils (school)</td>
+<td>8</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>pens (house)</td>
+<td>8</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Laundry Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Closet Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>batteries (AAA)</td>
+<td>12</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>batteries (AA)</td>
+<td>24</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<table>
+
+<thead>
+<tr>
+<th class='col-item'>Garage Items</th>
+<th class='col-need'>Need</th>
+<th class='col-have'>Have</th>
+<th class='col-buy'>Buy</th>
+</tr>
+</thead>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>Toilet Paper</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+</table>
+
+<button id='btn-buy-list'>Get Buy List</button>
+
+<script>
+
+//@TODO: getList, copy to clipboard
+
+  let btnBuyList = document.getElementById('btn-buy-list');
+  btnBuyList.addEventListener('click', function() {
+    getBuyList();
+  });
+
+  setHaveValues();
+
+  let qtyBuy = document.querySelectorAll('select');
+  qtyBuy.forEach( function(el) {
+    el.addEventListener('change', function() {
+      let difference = getNeedValue(el) - getHaveValue(el);
+      el.parentElement.nextElementSibling.innerText = difference;
+      if(difference > 0) {
+        el.parentElement.nextElementSibling.style.backgroundColor = 'blue';
+      }
+      else {
+        el.parentElement.nextElementSibling.style.backgroundColor = 'lightgray';
+      }
+    })
+  });
+
+  function getNeedValue(_element) {
+    return _element.parentElement.previousElementSibling.innerText;
+  }
+
+  function getHaveValue(_element) {
+    return _element.value;
+  }
+
+  function getBuyValue(_element) {
+    return _element.parentElement.nextElementSibling.innerText;
+  }
+
+  function setHaveValues() {
+    //sets dynamic select dropdowns values equal to total "need" value
+    //let test = document.getElementById('test');
+    //let testNum = test.parentElement.previousElementSibling.innerText;
+    let selects = document.getElementsByTagName('select');
+    let allNeedValues = [];
+    for(let s = 0; s < selects.length; s++) {
+      allNeedValues.push(selects[s].parentElement.previousElementSibling.innerText);
+    }
+    //alert(allNeedValues);
+    //let option;
+    //for(let op = 0; op <= testNum; op++) {
+    for(let v = 0; v < allNeedValues.length; v++) {
+      for(let op = 0; op <= allNeedValues[v]; op++) {
+        let option = document.createElement('option');
+        option.textContent = op;
+        selects[v].appendChild(option);
+      }
+    }
+  }
+
+  function getBuyList() {
+    let buyList = [];
+    let trs = document.getElementsByTagName('tr');
+    for(let tr = 0; tr < trs.length; tr++) {
+      if(trs[tr].children[3].innerText !== 'Buy') {
+        if(trs[tr].children[3].innerText !== '-') {
+          if(trs[tr].children[3].innerText !== '0') {
+            buyList.push(
+              trs[tr].children[0].innerText + ' = ' + trs[tr].children[3].innerText
+            );
+          }
+        }
+      }
+    }
+    alert(buyList);
+    //let tds = trs[trs.length - 1].getElementsByTagName('td');
+    //alert(tds.length);
+    //alert(qtyBuy[0].value);
+    //works only on https,
+    //so upload online
+    navigator.clipboard.writeText("kraby").then(
+      () => {
+      /* clipboard successfully set */
+      alert('copied');
+      },
+      () => {
+      /* clipboard write failed */
+      alert('Sorry, there was an error.');
+      }
+    );
+  }
+
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(function (registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function (err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
+</script>
+</body>
+</html>
