@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<meta name='apple-mobile-web-app-capable' content='yes' />
+
+<title>Battleship - 2 Player Game</title>
+
+<style type='text/css'>
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; }
+* { font: inherit; }
+html { color-scheme: dark light; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+body { background-color: #fff; font-family: Arial, sans-serif; font-size: 10px; margin: 0; min-height: 100vh; padding: 0; }
+img, picture, svg, video { display: block; margin: 0; max-width: 100%; padding: 0; }
+
+/* STYLES */
+#container-btns-top {
+  align-content: center;
+  height: 5vh;
+  margin: 0;
+  padding: 0;
+  }
+  #container-btns-top .btn-grids {
+    align-items: center;
+    background-color: #e3e3e3;
+    border-top: 1px solid gray;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    color: gray;
+    display: flex;
+    font-family: Courier, monospace;
+    font-size: .75rem;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    width: 45%;
+  }
+  #container-btns-top .btn-grids.active {
+    background-color: #3238b1;
+    XXXbackground-color: #fff;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  #container-btns-top #btn-menu {
+    align-items: center;
+    background-color: #0eab1e;
+    border-radius: 5px;
+    color: lightgray;
+    display: flex;
+    font-size: .6rem;
+    height: 75%;
+    justify-content: center;
+    margin: auto;
+    outline: 1px solid #0d7a18;
+    padding: 0 1%;
+    text-align: center;
+  }
+.grid {
+  background: #0f113a;
+  background: linear-gradient(0deg, rgb(6 7 24) 45%, rgb(50 56 177) 100%);
+  XXXbackground-color: #fff;
+  height: 95vh;
+  margin: 0;
+  XXXoutline: 1px solid #ddd;
+  padding: 0;
+  width: 100%;
+  }
+  .grid-title {
+    font-family: Courier, monospace;
+    font-size: 1rem !important;
+  }
+  .grid .row div {
+    align-items: center;
+    color: #d7d7d7;
+    XXXcolor: #0c0b72;
+    display: flex;
+    font-family: Courier, monospace;
+    font-size: 1.5rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 10%;
+  }
+  .grid .spot { background-color: #151966; XXXbackground-color: #87cefa; margin: 0; outline: 1px solid #9eaaef; padding: 0; }
+  .grid .spot.ship { background-color: gray; margin: 0; padding: 0; }
+  .grid .spot.hit { background-color: #d31111; margin: 0; padding: 0; }
+  .grid .spot.miss { background-color: #fff; margin: 0; padding: 0; }
+#grid-shots {
+  display: none;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 5vh;
+  z-index: 1;
+  }
+#screen-menu {
+  background-color: #c6c5cd;
+  display: none;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 50px 60px 2% 2%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  }
+  #screen-menu h1 {
+    font-family: Courier, monospace;
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+  #screen-menu h2 {
+    font-family: Courier, monospace;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 25px 0 0 0;
+    padding: 0;
+  }
+  #screen-menu p {
+    color: #404040;
+    font-size: 1.8em;
+    line-height: 1.3;
+    margin: 10px 0;
+    padding: 0 0 0 10px;
+  }
+  #screen-menu li {
+    font-size: 1rem;
+    margin: 5px 0;
+    padding: 0;
+  }
+  #screen-menu-close {
+    background-color: #ab0e0e;
+    border-radius: 50px;
+    box-shadow: 0 1px 3px 1px #303030;
+    color: #ededed;
+    height: 50px;
+    line-height: 50px;
+    outline: 1px solid #890a0a;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    width: 50px;
+  }
+
+/* UTILITY */
+.row {
+  display: flex;
+  height: 10%;
+  margin: 0;
+  padding: 0;
+}
+.color-000 {
+  color: #000 !important;
+}
+
+/* TEMP */
+.grid {
+  XXXoutline: 1px solid blue;
+  XXXoutline-offset: -1px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id='container-btns-top' class='row'>
+  <div id='btn-grid-ships' class='btn-grids active'>Ships</div><div id='btn-grid-shots' class='btn-grids'>Shots</div><div id='btn-menu'>Info</div>
+</div>
+
+<div id='grid-ships' class='grid'>
+  <div id='row0' class='row'>
+    <div class='grid-title'></div><div>A</div><div>B</div><div>C</div><div>D</div><div>E</div><div>F</div><div>G</div><div>H</div><div>I</div>
+  </div>
+  <div id='row1' class='row'>
+    <div>1</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row2' class='row'>
+    <div>2</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row3' class='row'>
+    <div>3</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row4' class='row'>
+    <div>4</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row5' class='row'>
+    <div>5</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row6' class='row'>
+    <div>6</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row7' class='row'>
+    <div>7</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row8' class='row'>
+    <div>8</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row9' class='row'>
+    <div>9</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+</div>
+
+<div id='grid-shots' class='grid'>
+  <div id='row0' class='row'>
+    <div class='grid-title'></div><div>A</div><div>B</div><div>C</div><div>D</div><div>E</div><div>F</div><div>G</div><div>H</div><div>I</div>
+  </div>
+  <div id='row1' class='row'>
+    <div>1</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row2' class='row'>
+    <div>2</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row3' class='row'>
+    <div>3</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row4' class='row'>
+    <div>4</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row5' class='row'>
+    <div>5</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row6' class='row'>
+    <div>6</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row7' class='row'>
+    <div>7</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row8' class='row'>
+    <div>8</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+  <div id='row9' class='row'>
+    <div>9</div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div><div class='spot'></div>
+  </div>
+</div>
+
+<div id='screen-menu'>
+
+  <h1>Battleship 2 Player Game</h1>
+  <p class='color-000'>This is a simple tool to help you play the game of battleship with another in person friend using your web browsers.</p>
+  <p>It's assumed you already know how to play the game so we won't waste your time providing all the game's details.</p>
+  <p>However just as a quick tip, a typical game consists of the following ships:</p>
+  <ul>
+    <li>1 aircraft carrier of 5 spots</li>
+    <li>1 battleship of 4 spots</li>
+    <li>1 cruiser of 3 spots</li>
+    <li>1 destroyer of 2 spots</li>
+    <li>1 submarine of 1 spot</li>
+  </ul>
+  <p>But feel free to include your own configuration of ships.</p>
+
+  <h2>How to use the interface</h2>
+  <p>Click a spot multiple times to edit its color state.</p>
+  <p>Refresh your browser to restart a fresh new setup.</p>
+  <p>Bookmark this page in your web browser and share with your friends!</p>
+
+  <div id='screen-menu-close'>CLOSE</div>
+</div>
+
+<script>
+
+/* VARIABLES */
+let btnMenu = document.getElementById('btn-menu');
+let screenMenu = document.getElementById('screen-menu');
+let screenMenuClose = document.getElementById('screen-menu-close');
+let btnGridShips = document.getElementById('btn-grid-ships');
+let btnGridShots = document.getElementById('btn-grid-shots');
+let gridShots = document.getElementById('grid-shots');
+let spotShips = document.querySelectorAll('#grid-ships .spot');
+let spotShots = document.querySelectorAll('#grid-shots .spot');
+
+btnGridShips.addEventListener('click', function() {
+  btnGridShips.setAttribute('class', 'btn-grids active');
+  btnGridShots.setAttribute('class', 'btn-grids');
+  gridShots.style.display = 'none';
+})
+
+btnGridShots.addEventListener('click', function() {
+  btnGridShips.setAttribute('class', 'btn-grids');
+  btnGridShots.setAttribute('class', 'btn-grids active');
+  gridShots.style.display = 'block';
+})
+
+btnMenu.addEventListener('click', function() {
+  screenMenu.style.display = 'block';
+});
+
+screenMenuClose.addEventListener('click', function() {
+  screenMenu.style.display = 'none';
+});
+
+for( const spot of spotShips ) {
+  spot.addEventListener('click', function() {
+    if(this.classList.contains('ship')) {
+      this.setAttribute('class', 'spot hit');
+    }
+    else if(this.classList.contains('hit')) {
+      this.setAttribute('class', 'spot');
+    }
+    else {
+      this.setAttribute('class', 'spot ship');
+    }
+  })
+}
+
+for( const spot of spotShots ) {
+  spot.addEventListener('click', function() {
+    if(this.classList.contains('miss')) {
+      this.setAttribute('class', 'spot hit');
+    }
+    else if(this.classList.contains('hit')) {
+      this.setAttribute('class', 'spot');
+    }
+    else {
+      this.setAttribute('class', 'spot miss');
+    }
+  })
+}
+
+</script>
+
+</body>
+</html>
