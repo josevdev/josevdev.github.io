@@ -66,7 +66,7 @@ tr td:first-child {
 }
 
 tr td:nth-child(3) {
-  background-color: white;
+  background-color: #a2e5a3;
 }
 
 tr td:last-child {
@@ -121,6 +121,13 @@ select {
 <th class='col-buy'>Buy</th>
 </tr>
 </thead>
+
+<tr>
+<td>chicken</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
 
 <tr>
 <td>ground meat</td>
@@ -296,6 +303,13 @@ select {
 </thead>
 
 <tr>
+<td>pancake mix</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
 <td>chips</td>
 <td>2</td>
 <td><select></select></td>
@@ -331,6 +345,13 @@ select {
 </tr>
 
 <tr>
+<td>olive oil</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
 <td>syrup</td>
 <td>1</td>
 <td><select></select></td>
@@ -338,7 +359,28 @@ select {
 </tr>
 
 <tr>
+<td>spaghetti sauce</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>oatmeal packets</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
 <td>oats</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>rice</td>
 <td>1</td>
 <td><select></select></td>
 <td>-</td>
@@ -394,7 +436,56 @@ select {
 </tr>
 
 <tr>
+<td>pasta</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>ziplock bags gallon</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>ziplock bags sandwich</td>
+<td>2</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>paper towels</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>paper plates</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>paper bowls</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
 <td>foil paper</td>
+<td>1</td>
+<td><select></select></td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>water bottles</td>
 <td>1</td>
 <td><select></select></td>
 <td>-</td>
@@ -553,6 +644,10 @@ select {
   let qtyBuy = document.querySelectorAll('select');
   qtyBuy.forEach( function(el) {
     el.addEventListener('change', function() {
+      if(getHaveValue(el) == 'more') {
+        el.parentElement.nextElementSibling.style.backgroundColor = 'lightgray';
+        return false;
+      }
       let difference = getNeedValue(el) - getHaveValue(el);
       el.parentElement.nextElementSibling.innerText = difference;
       if(difference > 0) {
@@ -583,17 +678,23 @@ select {
     let selects = document.getElementsByTagName('select');
     let allNeedValues = [];
     for(let s = 0; s < selects.length; s++) {
-      allNeedValues.push(selects[s].parentElement.previousElementSibling.innerText);
+      allNeedValues.push(parseInt(selects[s].parentElement.previousElementSibling.innerText) + 1);
     }
     //alert(allNeedValues);
     //let option;
     //for(let op = 0; op <= testNum; op++) {
     for(let v = 0; v < allNeedValues.length; v++) {
+      let nullChar = document.createElement('option');
+      nullChar.textContent = '-';
+      selects[v].appendChild(nullChar);
       for(let op = 0; op <= allNeedValues[v]; op++) {
         let option = document.createElement('option');
         option.textContent = op;
         selects[v].appendChild(option);
       }
+      let extraAmount = document.createElement('option');
+      extraAmount.textContent = 'more';
+      selects[v].appendChild(extraAmount);
     }
   }
 
@@ -604,27 +705,25 @@ select {
       if(trs[tr].children[3].innerText !== 'Buy') {
         if(trs[tr].children[3].innerText !== '-') {
           if(trs[tr].children[3].innerText !== '0') {
-            buyList.push(
-              trs[tr].children[0].innerText + ' = ' + trs[tr].children[3].innerText
-            );
+            buyList.push(trs[tr].children[0].innerText + ' = ' + trs[tr].children[3].innerText); //prints: item name = quantity
           }
         }
       }
     }
-    alert(buyList);
     //let tds = trs[trs.length - 1].getElementsByTagName('td');
     //alert(tds.length);
     //alert(qtyBuy[0].value);
     //works only on https,
     //so upload online
-    navigator.clipboard.writeText("kraby").then(
+    navigator.clipboard.writeText(buyList).then(
       () => {
       /* clipboard successfully set */
       alert('copied');
       },
       () => {
       /* clipboard write failed */
-      alert('Sorry, there was an error.');
+      alert('Could not copy to clipboard. This browser does not support it. Take a screenshot instead.');
+      alert(buyList);
       }
     );
   }
