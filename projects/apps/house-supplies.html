@@ -289,13 +289,6 @@ select {
 <td>-</td>
 </tr>
 
-<tr>
-<td>ranch</td>
-<td>1</td>
-<td><select></select></td>
-<td>-</td>
-</tr>
-
 </table>
 
 <table>
@@ -312,13 +305,6 @@ select {
 <tr>
 <td>pancake mix</td>
 <td>1</td>
-<td><select></select></td>
-<td>-</td>
-</tr>
-
-<tr>
-<td>chips</td>
-<td>2</td>
 <td><select></select></td>
 <td>-</td>
 </tr>
@@ -651,16 +637,15 @@ select {
       if(trs[tr].children[3].innerText !== 'Buy') {
         if(trs[tr].children[3].innerText !== '-') {
           if(trs[tr].children[3].innerText !== '0') {
-            buyList.push(trs[tr].children[0].innerText + ' = ' + trs[tr].children[3].innerText); //prints: item name = quantity
+            if(parseInt(trs[tr].children[3].innerText) > 0) {
+              buyList.push(trs[tr].children[0].innerText + ' = ' + trs[tr].children[3].innerText); //prints: item name = quantity
+            }
           }
         }
       }
     }
-    //let tds = trs[trs.length - 1].getElementsByTagName('td');
-    //alert(tds.length);
-    //alert(qtyBuy[0].value);
-    //works only on https,
-    //so upload online
+    
+    //clipboard.writeText works only on https
     navigator.clipboard.writeText(buyList).then(
       () => {
       /* clipboard successfully set */
